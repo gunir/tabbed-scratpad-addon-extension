@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="en"><head>
+<title>Options</title>
+<style>
+body {
+	line-height: 2;
+}
+
+.column {
+	display: inline-block;
+	vertical-align: top;
+	width: 49%;
+}
+
+p {
+	margin: 0;
+}
+
+input,
+button,
+select {
+	font-size: inherit;
+	margin: 0 0.5em;
+}
+
+input[readonly],
+.ro { /* some perms are permanantly on, so no clicking or hovering */
+	pointer-events: none;
+}
+
+table {
+	line-height: 1;
+}
+
+caption {
+	border-top: 1px solid #000;
+	margin-top: 1em;
+	padding: 0.5em;
+}
+
+#tbody td { /* off */
+	background-color: #33b;
+	box-shadow: 0 0 0 3px #33b inset;
+	color: #fff;
+	border: 1px solid transparent;
+	padding: 5px;
+	text-align: center;
+}
+
+#tbody .on,
+#tbody .ro {
+	background-color: #bfb;
+	box-shadow: 0 0 0 3px #bfb inset;
+	color: #000;
+}
+
+#tbody .on2off {
+	box-shadow: 0 0 0 2px #bfb inset, 0 0 0 4px #33b inset;
+}
+
+#tbody .off2on {
+	background-color: #bfb;
+	box-shadow: 0 0 0 2px #33b inset, 0 0 0 4px #bfb inset;
+	color: #000;
+}
+
+#tbody td:hover {
+	background-color: #b9f;
+	color: #000;
+}
+
+.buttons {
+	margin: 0.5em;
+	text-align: center;
+}
+</style>
+<script src="options.js"></script>
+</head><body>
+	<div><div class="column">
+		<p>
+			<span title="Change shortcuts with the cog">Keyboard shortcut</span>
+			<input type="text" id="textShortcut" tabindex="-1" readonly="">
+		</p><p style="display: none;">
+			<label title="Override tab options based on source content">
+				<input type="checkbox" id="checkDetectIndent" disabled="disabled">Detect indentation
+			</label>
+		</p><p>
+			<label title="Automatically insert closing brackets">
+				<input type="checkbox" id="checkAutoClose">Autoclose brackets
+			</label>
+		</p><p>
+			<label title="Use spaces instead of the tab character">
+				<input type="checkbox" id="checkUseSpaces">Indent using spaces
+			</label>
+		</p>
+	</div><div class="column">
+		<table><tbody>
+			<tr>
+				<td>Font size</td>
+				<td><select id="selectFontSize">
+					<option>10</option>
+					<option>11</option>
+					<option>12</option>
+					<option>13</option>
+					<option>14</option>
+					<option>16</option>
+					<option>18</option>
+					<option>20</option>
+				</select></td>
+			</tr><tr>
+				<td>Tab size</td>
+				<td><select id="selectTabSize">
+					<option>2</option>
+					<option>4</option>
+					<option>8</option>
+				</select></td>
+			</tr><tr>
+				<td>Keybindings</td>
+				<td><select id="selectKeyMap">
+					<option value="default">Default</option>
+					<option value="vim">Vim</option>
+					<option value="emacs">Emacs</option>
+					<option value="sublime">Sublime Text</option>
+				</select></td>
+			</tr>
+		</tbody></table>
+	</div></div>
+	<table><caption>Optional Permissions</caption><tbody id="tbody">
+		<tr>
+			<td tabindex=0>activeTab</td>
+			<td tabindex=0>bookmarks</td>
+			<td tabindex=0>browserSettings</td>
+			<td tabindex=0>clipboardRead</td>
+		</tr><tr>
+			<td tabindex=0>clipboardWrite</td>
+			<td tabindex=0>cookies</td>
+			<td tabindex=0>downloads.open</td>
+			<td tabindex=0>find</td>
+		</tr><tr>
+			<td tabindex=0>geolocation</td>
+			<td tabindex=0>history</td>
+			<td tabindex=0>idle</td>
+			<td tabindex=0>menus.overrideContext</td>
+		</tr><tr>
+			<td tabindex=0>notifications</td>
+			<td tabindex=0>search</td>
+			<td tabindex=0>tabHide</td>
+			<td tabindex=0>tabs</td>
+		</tr><tr>
+			<td tabindex=0>topSites</td>
+			<td tabindex=0>webNavigation</td>
+			<td tabindex=0>webRequest</td>
+			<td tabindex=0>webRequestBlocking</td>
+		</tr>
+	</tbody></table>
+	<div class="buttons"><button id="button">Commit</button></div>
+</body></html>

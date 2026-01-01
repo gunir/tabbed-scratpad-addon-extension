@@ -1,0 +1,399 @@
+<!DOCTYPE html><html lang="en"><head>
+<title>About Scratchpad</title>
+<style>
+body {
+	line-height: 1.5;
+}
+
+p {
+	margin-bottom: 0;
+}
+
+ul {
+	margin: 0;
+	padding-left: 2em;
+}
+
+li {
+	margin: 0.5em 0;
+}
+
+pre {
+	tab-size: 2;
+}
+
+tr {
+	vertical-align: top;
+}
+
+td {
+	padding-left: 1em;
+}
+
+td[colspan] {
+	padding: 2em 0 1em 0;
+}
+</style>
+</head><body>
+<h4>
+	Scratchpad v0.7.1
+</h4><p>
+	Scratchpad provides an environment to experiment with JavaScript in Firefox.
+	The item on the browser's Tools menu opens one or more separate windows which
+	allow writing and running code that interacts with the active tab in the
+	topmost window, in either the normal page context or Scratchpad's content
+	context for the tab (with some limits) or in Scratchpad's background context.
+</p><p>
+	Scratchpad uses <a href="https://codemirror.net/5/">CodeMirror 5</a>,
+	Copyright &copy; Marijn Haverbeke and others.
+	CodeMirror is released under the <a href="codemirror/LICENSE">MIT License</a>.
+</p><h4>
+	Execution Contexts
+</h4><p>
+	Conventional JavaScript loaded with a page runs in the page context ("main world"),
+	which is Scratchpad's default.
+	Web extensions provide the content context
+	(a privileged context in each tab, "isolated world")
+	and the background context.
+	Users can select the execution context from the configuration menu (cog)
+	for each scratchpad (page, content, or background).
+	Firefox prevents extensions, including Scratchpad, from accessing:
+</p><ul><li>
+		tabs with page schemes other than http://, https://, ws://, wss://,
+		ftp:// (removed in FF 88), and file:///
+		(e.g., about: pages -- other than about:blank -- are protected),
+	</li><li>
+		tabs with pages in certain Mozilla domains, previously
+		specified by the "advanced" preference (about:config) value
+		extensions.webextensions.restrictedDomains, and
+	</li><li>
+		page contexts of tabs with pages whose Content Security Policy
+		prevents code injection.
+	</li>
+</ul><p>
+	A page's CSP does not prevent Scratchpad from accessing the tab's content context.
+	The page context and content context have different window objects.
+	JavaScript in the content context cannot access JavaScript in the page context
+	and vice versa.
+	The page and content contexts do, however, share access to the DOM.
+	Refer to
+	<a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions">MDN</a>
+	for more complete documentation about web extension architecture.
+</p><p>
+	When running code in Scratchpad's content and background contexts,
+	it is possible to affect Scratchpad adversely by running
+	incompatible code (e.g., redefining global objects).
+</p><p>
+	Scratchpad uses message-based communication internally.
+	Users who wish to experiment with web extension message APIs and
+	custom DOM events should avoid conflicts with Scratchpad's own messages,
+	which use a schema like:
+</p><pre>
+	<em>message</em> = {
+		action: '(about|download|options|resize|run|tabSize)',
+		<em>other properties as necessary</em>
+	}
+</pre><p>
+	A simple way to avoid conflicts would be not to include a property
+	'action' in any sent message and to ignore any received message with
+	that property.
+	Future versions of Scratchpad may use other action values.
+</p><h4>
+	Working with Files
+</h4><p>
+	Scratchpad must use the browser's upload and download
+	functionality to load and save files.
+	Users who have
+	<a href="https://support.mozilla.org/en-US/kb/how-does-phishing-and-malware-protection-work">
+		Google Safe Browsing
+	</a>
+	enabled will have network activity when saving files. Scratchpad itself never
+	makes any network connection and sends no information anywhere. Users who
+	don't wish to use Google Safe Browsing can disable it in the
+	"Privacy & Security" tab of Firefox settings under
+	"Deceptive Content and Dangerous Software Protection."
+</p><ul><li>
+	"Save" always saves to the configured download directory using the current
+	file name.
+	It never prompts the user for any action, including overwriting possibly
+	existing files.
+	This operation is similar to not choosing the "Always ask where to save files"
+	browser setting for downloads.
+	Saved files overwrite existing files instead of forcing the saved
+	file names to be unique.
+	</li><li>
+	"Save As ..." opens a file picker and allows choosing any name and directory.
+	It asks the user to confirm overwriting existing files.
+	This operation is the same as choosing the
+	"Always ask where to save files" browser setting for downloads.
+	</li>
+</ul><h4>
+	Working with Permissions
+</h4><p>
+	Scratchpad itself uses:
+</p><ul><li>
+	the Downloads permission to save files;
+	the extension Downloads API provides more functionality than HTML
+	download, like feedback on whether the "save" was successful or not;
+	</li><li>
+	the Menus permission to add an item to the Tools menu;
+	</li><li>
+	the Storage permission to persist user preferences over time; and
+	</li><li>
+	the &lt;all_urls&gt; permission to access all sources in all
+	tabs to inject JavaScript, its core function.
+	</li>
+</ul><p>
+	To experiment with JavaScript in the content and
+	background contexts, Scratchpad provides the ability to enable permissions
+	that Scratchpad itself does not require.
+	Starting with Firefox 84, users can enable some permissions in
+	about:addons.
+	Scratchpad provides the ability to request permissions from its options
+	dialog, including the ones that Firefox does not include in its permissions
+	dialog.
+	The following list summarizes them.
+</p>
+<table><tbody>
+	<tr><td colspan="2">
+		Required permissions for Scratchpad:
+	</td></tr>
+	<tr><td>
+		downloads
+	</td><td>
+		Download files and read and alter the browser's download history
+	</td></tr>
+	<tr><td>
+		menus
+	</td><td>
+		Add items to the browser's menu system (cannot be optional)
+	</td></tr>
+	<tr><td>
+		storage
+	</td><td>
+		Store and retrieve data (cannot be optional)
+	</td></tr>
+	<tr><td>
+		&lt;all_urls&gt;
+	</td><td>
+		Access data for all websites (includes http://, https://, and file://)
+	</td></tr>
+	<tr><td colspan="2">
+		Optional permissions that can be requested from about:addons (in FF 84+):
+	</td></tr>
+	<tr><td>
+		bookmarks
+	</td><td>
+		Read and alter bookmarks
+	</td></tr>
+	<tr><td>
+		browserSettings
+	</td><td>
+		Read and alter browser settings
+	</td></tr>
+	<tr><td>
+		clipboardRead
+	</td><td>
+		Get data from the clipboard
+	</td></tr>
+	<tr><td>
+		clipboardWrite
+	</td><td>
+		Input data to the clipboard
+	</td></tr>
+	<tr><td>
+		downloads.open
+	</td><td>
+		Open files downloaded to your computer
+	</td></tr>
+	<tr><td>
+		find
+	</td><td>
+		Read the text of all open tabs
+	</td></tr>
+	<tr><td>
+		geolocation
+	</td><td>
+		Access your location
+	</td></tr>
+	<tr><td>
+		history
+	</td><td>
+		Access browsing history
+	</td></tr>
+	<tr><td>
+		notifications
+	</td><td>
+		Display notifications to you
+	</td></tr>
+	<tr><td>
+		tabHide
+	</td><td>
+		Hide and show browser tabs
+	</td></tr>
+	<tr><td>
+		tabs
+	</td><td>
+		Access browser tabs
+	</td></tr>
+	<tr><td>
+		topSites
+	</td><td>
+		Access (frequently visited) browsing history
+	</td></tr>
+	<tr><td>
+		webNavigation
+	</td><td>
+		Access browser activity during navigation
+	</td></tr>
+	<tr><td colspan="2">
+		Optional permissions that cannot be requested from about:addons:
+	</td></tr>
+	<tr><td>
+		activeTab
+	</td><td>
+		Access the active browser tab
+	</td></tr>
+	<tr><td>
+		cookies
+	</td><td>
+		Get and set cookies
+	</td></tr>
+	<tr><td>
+		idle
+	</td><td>
+		Find out when the system is idle, locked, or active
+	</td></tr>
+	<tr><td>
+		menus.overrideContext
+	</td><td>
+		Provide custom context menus
+	</td></tr>
+	<tr><td>
+		search
+	</td><td>
+		Execute searches using the installed search engines
+	</td></tr>
+	<tr><td>
+		webRequest
+	</td><td>
+		Intercept HTTP requests and responses
+	</td></tr>
+	<tr><td>
+		webRequestBlocking
+	</td><td>
+		Alter HTTP requests and responses
+	</td></tr>
+	<tr><td colspan="2">
+		Permissions that Firefox does not support as optional:
+	</td></tr>
+	<tr><td>
+		alarms
+	</td><td>
+		Access alarms API
+	</td></tr>
+	<tr><td>
+		captivePortal
+	</td><td>
+		Access captivePortal API
+	</td></tr>
+	<tr><td>
+		contextualIdentities
+	</td><td>
+		Access contextualIdentities API
+	</td></tr>
+	<tr><td>
+		dns
+	</td><td>
+		Access dns API
+	</td></tr>
+	<tr><td>
+		identity
+	</td><td>
+		Access identity API
+	</td></tr>
+	<tr><td>
+		theme
+	</td><td>
+		Access theme API
+	</td></tr>
+	<tr><td>
+		unlimitedStorage
+	</td><td>
+		Exceed storage quota
+	</td></tr>
+	<tr><td colspan="2">
+		Permissions that were not available in Manifest v2 for FF 72 (which Scratchpad supports):
+	</td></tr>
+	<tr><td>
+		browsingData
+	</td><td>
+		Clear recent browsing history, cookies, and related data<br>Available in Manifest v2 for FF 77+
+	</td></tr>
+	<tr><td>
+		declarativeNetRequest
+	</td><td>
+		Block or upgrade web requests without any host permissions<br>Available in Manifest v2 for FF 113+
+	</td></tr>
+	<tr><td>
+		declarativeNetRequestFeedback
+	</td><td>
+		Query and debug declarative rules<br>Available in Manifest v2 for FF 113+
+	</td></tr>
+	<tr><td>
+		declarativeNetRequestWithHostAccess
+	</td><td>
+		Block or upgrade web requests with host permissions<br>Available in Manifest v2 for FF 113+
+	</td></tr>
+	<tr><td>
+		management
+	</td><td>
+		Monitor extension usage and manage themes<br>Available in Manifest v2 for FF 77+
+	</td></tr>
+	<tr><td>
+		nativeMessaging
+	</td><td>
+		Exchange messages with programs other than Firefox<br>Available in Manifest v2 for FF 87+
+	</td></tr>
+	<tr><td>
+		pkcs11
+	</td><td>
+		Provide cryptographic authentication services<br>Available in Manifest v2 for FF 77+
+	</td></tr>
+	<tr><td>
+		privacy
+	</td><td>
+		Read and alter privacy settings<br>Available in Manifest v2 for FF 75+
+	</td></tr>
+	<tr><td>
+		proxy
+	</td><td>
+		Control browser proxy settings<br>Available in Manifest v2 for FF 77+
+	</td></tr>
+	<tr><td>
+		scripting
+	</td><td>
+		Insert JavaScript and CSS into pages using Manifest v3-compatible API<br>Available in Manifest v2 for FF 102+
+	</td></tr>
+	<tr><td>
+		sessions
+	</td><td>
+		Access recently closed tabs<br>Available in Manifest v2 for FF 77+
+	</td></tr>
+	<tr><td>
+		webRequestAuthProvider
+	</td><td>
+		Supply credentials asynchronously, compatible with MV3 use<br>Available in Manifest v2 for FF 126+
+	</td></tr>
+	<tr><td>
+		webRequestFilterResponse
+	</td><td>
+		Monitor and alter response data<br>Available in Manifest v2 for FF 110+
+	</td></tr>
+	<tr><td>
+		webRequestFilterResponse.serviceWorkerScript
+	</td><td>
+		Monitor and alter response data in workers<br>Available in Manifest v2 for FF 95+
+	</td></tr>
+</tbody></table>
+</body></html>

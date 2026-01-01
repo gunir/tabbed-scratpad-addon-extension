@@ -1,0 +1,77 @@
+{
+  "manifest_version": 2,
+  "name": "Tabbed Scratchpad",
+  "version": "0.0.2",
+  "description": "Replacement for the JavaScript Scratchpad editor removed in Firefox 72, forked from https://addons.mozilla.org/en-US/firefox/addon/scratchpad/ with the help of Google Gemini",
+  "content_security_policy": "default-src 'none'; object-src 'none'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "@tabbed-scratchpad",
+      "strict_min_version": "72.0",
+      "data_collection_permissions": {
+          "required": ["none"]
+      }
+    }
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "content.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ],
+      "match_about_blank": true
+    }
+  ],
+  "commands": {
+    "menu-action": {
+      "suggested_key": {
+        "default": "Shift+F4"
+      },
+      "description": "Open a scratchpad"
+    }
+  },
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.svg",
+    "64": "icon.svg"
+  },
+  "options_ui": {
+    "browser_style": true,
+    "page": "options.htm"
+  },
+  "optional_permissions": [
+    "activeTab",
+    "bookmarks",
+    "browserSettings",
+    "clipboardRead",
+    "clipboardWrite",
+    "cookies",
+    "downloads.open",
+    "find",
+    "geolocation",
+    "history",
+    "idle",
+    "menus.overrideContext",
+    "notifications",
+    "search",
+    "tabHide",
+    "tabs",
+    "topSites",
+    "webNavigation",
+    "webRequest",
+    "webRequestBlocking"
+  ],
+  "permissions": [
+    "downloads",
+    "menus",
+    "storage",
+    "<all_urls>"
+  ]
+}

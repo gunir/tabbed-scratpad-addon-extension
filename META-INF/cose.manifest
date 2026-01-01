@@ -1,0 +1,107 @@
+Manifest-Version: 1.0
+
+Name: manifest.json
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: QctACymDBu6EaShCitbP2UFtT8s=
+SHA256-Digest: 0HMsSiVj7JpnClQ2SRvQDr6a9fXbS5gKHM2DbOu5kcI=
+
+Name: about.htm
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: eFJY6IyvkXh8PQpPtFxpVeKcj6Y=
+SHA256-Digest: MZRD8cSCouQDaUq4iSAFjvL55rAiCvudTPl7j1o+Q2U=
+
+Name: options.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: K3CU2s3JHtTSC/aynxwJIu7G3zE=
+SHA256-Digest: o0EiDFnQ2QuT7nI77OsgMTC9XEaX7uZelhOFhEeZLRU=
+
+Name: background.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: ka1qqn/M55Dj5xOaj2mkvf5j6mE=
+SHA256-Digest: 5lctWkuRuL0J6HR3VxxdX0bCAU/+mn851NwcSxoGvzc=
+
+Name: icon.svg
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: ekLe418nqloyukGqnkLjjNar98c=
+SHA256-Digest: 0yS+vGuDHR18yTuhul9M7sBpTwrn2OUQ/cjZ2BvdK3Y=
+
+Name: middle.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: dzT+OeAt8PVpgpF0m/GowOAa3C8=
+SHA256-Digest: m5Gl2tPhLWCG5zh0GkShnVZHacaYYeLsV+s60zSkV8I=
+
+Name: icon.png
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: ovYCGF3WSWR97BhGaOe9D6ehwPE=
+SHA256-Digest: RwQ97mB23CG53CoCHv/nEYnyed6b1BkJA3j5tRCjKTg=
+
+Name: options.htm
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: 69DMLb67n6CKjUYYsI2Icv52k+U=
+SHA256-Digest: e4TNCbrzOsYUIQPLdOq+A3kt4fjEF9DNCIlNBTwEvMk=
+
+Name: content.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: 9al2a5TjzDet1DerE/PWi6erLvc=
+SHA256-Digest: J5FKDByvHroU87rYo/5QpPBKZmMS4lM9QVDCRaze5HM=
+
+Name: scratchpad.htm
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: LD/dr0P4Rd6WEyzp7rhKLpnFcaA=
+SHA256-Digest: JxSJ6LfD5a7vFzZ0KESVw/yq007+XdPyeNM7ci/r5vU=
+
+Name: scratchpad.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: eGzjrb5Fsds0qwZSpyCALpqQYEY=
+SHA256-Digest: 8LjPWfHo7eNYm3hJWbuFhVudtqlwKS4V+CkUz8WaOA8=
+
+Name: codemirror/LICENSE
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: rzwBhBFxU5YYBJQJRiUq49yJOAw=
+SHA256-Digest: FopL7Mlo9QAeLuLgKRtuTaq6/BiUoRreHhHVbpYJbgc=
+
+Name: codemirror/codemirror.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: Q7XWZp/EjFMAChbdvKcMvc1m8GU=
+SHA256-Digest: mYoGKKPUpxN0SfC7OlkGZUoDIxbkcx6HVlVGaO16KWM=
+
+Name: codemirror/javascript.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: XcZGrLxnpGgB0V9uXIC5rWIP/Bg=
+SHA256-Digest: ExHHPGYwi6b3hRK0wudwppAMgMNiloN2MylmjuYREWM=
+
+Name: codemirror/codemirror.css
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: l/iX+iZQJSHw0zSPtp4iI0ZWcEY=
+SHA256-Digest: 60lOqXLSZh74b39qxlbdZ4bXIeScnBtG4euWfktvm/M=
+
+Name: codemirror/addon/closebrackets.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: JItFvoJqiFag7QczyFEdnQxZVQc=
+SHA256-Digest: FDwwFMKSVPNTHMML5tkCBQhLz8Ns/6b5sqRv1CpAviA=
+
+Name: codemirror/addon/active-line.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: PZUPUFUoYIjpPg7kyKHWLq+K7aw=
+SHA256-Digest: OvvPeINcm9w0LjmSxT2bdChnImE7saitydFA7chzfug=
+
+Name: codemirror/addon/matchbrackets.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: FVWocRj4CC7dA8e3wTY+vR2q6kU=
+SHA256-Digest: nQ5e5MGZ/L5IepAYYMLPfQByY4Umd91YWAmPyqhYDx4=
+
+Name: codemirror/keymap/vim.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: uK+qyUBFdF1FF8ljWl0MHCZtt8o=
+SHA256-Digest: yBJDcOC6fnbVzePBjSV8XJnlV41lBfDuqrXHkWc8QOg=
+
+Name: codemirror/keymap/sublime.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: hKZLYLWALoawaJzPqVZlM5NH8Mc=
+SHA256-Digest: HVMqZ1lIRctxY7CQoG2pKHuJaUSrXyLfZ/FOF2vUNOU=
+
+Name: codemirror/keymap/emacs.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: +juWPDj4CasTw3/XqmVKxGo550A=
+SHA256-Digest: ry9CyfRhlR8T6XhfY0zJ+OXWOwxcI3WzMRBd6hmnH+8=
+

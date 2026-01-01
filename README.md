@@ -1,6 +1,9 @@
 # tabbed-scratpad-addon-extension
 AMO: https://addons.mozilla.org/en-US/firefox/addon/tabbed-scratchpad/
 
+<img width="1024" height="798" alt="image" src="https://github.com/user-attachments/assets/46fc03be-c20c-4e91-a570-cf99b49bddbc" />
+
+
 Continue from https://addons.mozilla.org/en-US/firefox/addon/scratchpad/ with new features:
 - Auto-save (session)
 - Tabbed
